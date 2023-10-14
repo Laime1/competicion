@@ -1,0 +1,2 @@
+# competicion
+Aplicacion ICPC
