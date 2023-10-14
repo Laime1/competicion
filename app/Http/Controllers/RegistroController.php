@@ -21,7 +21,7 @@ class RegistroController extends Controller
     
         'ci.required' => 'Este campo es obligatorio',
         'ci.unique' => 'Este CI ya existe',
-        'ci.regex' => 'Obligatorio 9 números seguidos, opcional 2 alfanuméricos',
+        'ci.regex' => 'Obligatorio 6 números seguidos, opcional 2 alfanuméricos',
         'ci.max' => 'Maximo 9 digitos',
     
         'telefono.required' => 'Este campo es obligatorio',
@@ -53,9 +53,9 @@ class RegistroController extends Controller
     // Valida los datos ingresados por el usuario
     $validatedData = [
 
-        'nombre' => 'required|regex:/^[A-Za-z]+$/|max:50',
-        'apellidos' => 'required|regex:/^[A-Za-z]+$/|max:50',
-        'ci' => 'required|unique:usuarios|regex:/^[0-9]{9}(?:[A-Za-z0-9]{2})?$/|max:9',
+        'nombre' => 'required|regex:/^[A-Za-z\s]+$/|max:50',
+        'apellidos' => 'required|regex:/^[A-Za-z\s]+$/|max:50',
+        'ci' => 'required|unique:usuarios|regex:/^[0-9]{6,9}(?:[A-Za-z0-9]{2})?$/|max:9',
         'telefono' => 'required|regex:/^[0-9]+$/|min:8',
         'email' => 'required|unique:usuarios|email|regex:/^[A-Za-z0-9.@]+$/',
         'contrasenia' => 'required|max:20',
@@ -85,7 +85,7 @@ class RegistroController extends Controller
     $usuario=Usuario::find($request->input('ci'));
     // Redirige a una página de confirmación o a la lista de eventos
     if($usuario){
-         return redirect('/users/register')->with('success', 'Usuario registrado con éxito');
+         return redirect('/users/lits')->with('success', 'Usuario registrado con éxito');
     }else{
         return redirect('/users/register')->with('success', 'Usuario no registrado ');   
     }
