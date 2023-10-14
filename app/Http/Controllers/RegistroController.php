@@ -85,7 +85,7 @@ class RegistroController extends Controller
     $usuario=Usuario::find($request->input('ci'));
     // Redirige a una página de confirmación o a la lista de eventos
     if($usuario){
-         return redirect('/users/lits')->with('success', 'Usuario registrado con éxito');
+         return redirect('/users/list')->with('success', 'Usuario registrado con éxito');
     }else{
         return redirect('/users/register')->with('success', 'Usuario no registrado ');   
     }
